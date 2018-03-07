@@ -14,7 +14,7 @@ h1,h2,h3,h4,h5,h6{
   	color:#2f9eff;
 }
 
-p{
+p, ol{
 	margin-top: 20px;
   	margin-bottom: 10px;
   	color:#2fe7ff;

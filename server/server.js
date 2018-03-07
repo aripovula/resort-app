@@ -37,11 +37,11 @@ io.on('connection',(socket) => {
   // to emit broadcast message TO ALL EXcluding MYSELF by sending default message
   socket.broadcast.emit('newMessage', generateMessage('Admin','New user joined'));
 
-  socket.on('createMessage', (message) => {
+  socket.on('createMessage', (message, callback) => {
     console.log('createMessage',message);
     // to emit broadcast message TO ALL INcluding MYSELF
     io.emit('newMessage',generateMessage(message.from, message.text));
-
+    callback('from SERVER');
     // to emit broadcast message TO ALL EXcluding MYSELF by capturing sent message
     // socket.broadcast.emit('newMessage',{
     //     from: message.from,
