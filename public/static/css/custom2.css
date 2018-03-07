@@ -1,0 +1,20 @@
+
+/*  this css is used to slightly change few pages - initially bs.css and custom.css are 
+applied and then body and footer are overridden in case of those few page */
+
+body {
+	background: #000000 !important;
+	/*background: #000000 url(macindark1.jpg) bottom right no-repeat !important;*/
+	color: #FFFFFF !important;
+	font-size:16px !important;
+	font-family: 'Assistant' !important;
+}  
+
+
+.footer{
+    position: fixed;
+    bottom: 0px;
+    left: 50px;
+	background: #000000 !important;
+	font-size: 12px;  
+}

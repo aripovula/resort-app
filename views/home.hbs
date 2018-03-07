@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="/static/css/custom.css">
+    <link href='https://fonts.googleapis.com/css?family=Assistant' rel='stylesheet'/>
+    <title>Some Website</title>
+
+            <!-- css customized for this page -->
+        <style type="text/css">
+			
+			#content, html, body {
+			    height: 100%;
+          background: rgb(206, 188, 193);
+			}
+			#left {
+          background: #fff;
+			    float: left;
+			    top:0px;
+			    width: 30%;
+			    color:#ffffff;
+			    height: 100%;
+			    overflow: scroll;
+				  border-right:5px solid #000000;
+			    border-left:20px solid transparent;
+			}
+			#right {
+			    background: #fff;
+          float: left;
+			    top:0px;
+				  border-right:40px solid transparent;
+				  border-left:20px solid transparent;
+			    width: 70%;
+			    height: 100%;
+			    overflow: scroll;
+			}
+			
+			
+			ul.nav a.vb { color: #ffffff !important; font-size:14px !important;}
+			ul.nav a.vb:active { background-color: #666666  !important; color: #ffffff !important; }
+			ul.nav a.vb:focus { background-color: #666666  !important; color: #ffffff !important; }
+			ul.nav a.vb:visited { background-color: #666666  !important; color: #ffffff !important; }
+			
+  </style>
+  
+  </head>
+  <body>
+    <script src="socket.io/socket.io.js"></script>
+    <script>
+      var socket = io();
+       
+       socket.on('connect', () => {
+         console.log('Connected to server');
+       });
+
+              socket.on('disconnect', () => {
+         console.log('Disconnected to server');
+       });
+
+    </script>
+    <!--div class="container"-->
+
+    <div id="content">
+          
+      <div class="container">
+        {{> header}}
+      </div>
+          <div id="left">
+            <!- activity, rating, percentage booked, book or enroll buttons ->
+            <h4>Activities</h4>  <!- dolphine show, visit ancient castle, sport contest   ->
+            <h4>Spa and Wellness</h4>  <!- outdoor spa, ___ spa, fitness O'zone, fitness and shaping->
+            <h4>Pools</h4>  <!- dolphine show, visit ancient castle, sport contest ->
+            <h4>Meals</h4>  <!- dolphine show, visit ancient castle, sport contest ->
+            <h4>Services</h4>  <!- airport shuttle, room service, sport contest ->
+          </div>
+    <div id="right">
+
+    <p>{{screamIt welcomeMessage}}</p>
+
+    
+    </div>
+    {{> footer}}
+    </div>
+  </body>
+</html>
