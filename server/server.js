@@ -4,6 +4,7 @@ const fs = require('fs');
 const path = require('path');
 const socketIO = require('socket.io');
 const http = require('http');
+const {generateMessage} = require('./utils/message');
 
 const port = process.env.PORT || 3000;
 var app = express();
@@ -31,28 +32,15 @@ io.on('connection',(socket) => {
   console.log('New user connected');
 
   // to emit to one user - MYSELF
-  socket.emit('newMessage', {
-    from:'ula',
-    text:'hey, welcome !',
-    createdAt: new Date().getTime()
-  });
+  socket.emit('newMessage', generateMessage('ula', 'hey, welcome !'));
 
   // to emit broadcast message TO ALL EXcluding MYSELF by sending default message
-  socket.broadcast.emit('newMessage', {
-    from: 'Admin',
-    text: 'New user joined',
-    createdAt: new Date().getTime()
-  });
-  
+  socket.broadcast.emit('newMessage', generateMessage('Admin','New user joined'));
 
   socket.on('createMessage', (message) => {
     console.log('createMessage',message);
     // to emit broadcast message TO ALL INcluding MYSELF
-    // io.emit('newMessage',{
-    //   from: message.from,
-    //   text: message.text,
-    //   createdAt: new Date().getTime()
-    // });
+    io.emit('newMessage',generateMessage(message.from, message.text));
 
     // to emit broadcast message TO ALL EXcluding MYSELF by capturing sent message
     // socket.broadcast.emit('newMessage',{
