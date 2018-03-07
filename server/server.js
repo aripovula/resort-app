@@ -30,22 +30,37 @@ app.use(express.static(path.join(__dirname , '../public')));
 io.on('connection',(socket) => {
   console.log('New user connected');
 
-  // to emit to one user
-  // socket.emit('newMessage', {
-  //   from:'ula',
-  //   text:'hey, hi',
-  //   createdAt:'1234'
-  // });
+  // to emit to one user - MYSELF
+  socket.emit('newMessage', {
+    from:'ula',
+    text:'hey, welcome !',
+    createdAt: new Date().getTime()
+  });
 
+  // to emit broadcast message TO ALL EXcluding MYSELF by sending default message
+  socket.broadcast.emit('newMessage', {
+    from: 'Admin',
+    text: 'New user joined',
+    createdAt: new Date().getTime()
+  });
+  
 
   socket.on('createMessage', (message) => {
     console.log('createMessage',message);
-    // to emit broadcast message
-    io.emit('newMessage',{
-      from: message.from,
-      text: message.text,
-      createdAt: new Date().getTime()
-    });
+    // to emit broadcast message TO ALL INcluding MYSELF
+    // io.emit('newMessage',{
+    //   from: message.from,
+    //   text: message.text,
+    //   createdAt: new Date().getTime()
+    // });
+
+    // to emit broadcast message TO ALL EXcluding MYSELF by capturing sent message
+    // socket.broadcast.emit('newMessage',{
+    //     from: message.from,
+    //     text: message.text,
+    //     createdAt: new Date().getTime()
+    //   });
+
   });  
 
   socket.on('disconnect', () => {
