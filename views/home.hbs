@@ -47,18 +47,7 @@
   </head>
   <body>
     <script src="socket.io/socket.io.js"></script>
-    <script>
-      var socket = io();
-       
-       socket.on('connect', () => {
-         console.log('Connected to server');
-       });
-
-              socket.on('disconnect', () => {
-         console.log('Disconnected to server');
-       });
-
-    </script>
+    <script src="/js/home.js"></script>
     <!--div class="container"-->
 
     <div id="content">
@@ -68,7 +57,11 @@
       </div>
           <div id="left">
             <!- activity, rating, percentage booked, book or enroll buttons ->
-            <h4>Activities</h4>  <!- dolphine show, visit ancient castle, sport contest   ->
+            <div>
+              <h4>Activities</h4>  <!- dolphine show, visit ancient castle, sport contest   ->
+              
+            </div>
+            
             <h4>Spa and Wellness</h4>  <!- outdoor spa, ___ spa, fitness O'zone, fitness and shaping->
             <h4>Pools</h4>  <!- dolphine show, visit ancient castle, sport contest ->
             <h4>Meals</h4>  <!- dolphine show, visit ancient castle, sport contest ->
