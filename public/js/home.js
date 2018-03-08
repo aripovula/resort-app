@@ -19,7 +19,7 @@ socket.on('connect', function() {
 socket.on('newMessage',function(message){
   console.log('new message',message);
   var li = jQuery('<li></li>');
-  li.text(`${message.from}:${message.text}`);
+  li.text(`${message.from}: ${message.createdAt} :${message.text}`);
   jQuery('#messages').append(li);
 });
 
@@ -34,10 +34,13 @@ socket.on('newMessage',function(message){
 window.addEventListener('submit', function(evt) {
   evt.preventDefault();
   // Do somethin g else
+  var createdAt = moment().format('h:mm a');
+  console.log(createdAt);
   socket.emit('createMessage', 
   {
     from:'USER', 
-    text:jQuery('[name=message]').val()
+    text:jQuery('[name=message]').val(),
+    createdAt: createdAt
   }, 
   function(data){
     console.log('Got it', data);
